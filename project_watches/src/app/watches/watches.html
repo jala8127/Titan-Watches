@@ -1,0 +1,64 @@
+<div class="main-content">
+      <div class="content-header">
+        <span class="item-count">{{ filteredWatches.length }} items</span>
+      </div>
+      
+      <div class="page-layout">
+        <aside class="filter-sidebar">
+          <h2 class="filter-title">Filter By</h2>
+          <button class="clear-all-btn" (click)="clearAllFilters()">CLEAR ALL</button>
+
+          <!-- <div class="filter-section">
+            <h3 class="filter-heading">Brand</h3>
+            <ul class="filter-options">
+                <li *ngFor="let brand of brands">
+                  <a (click)="setBrandFilter(brand)" [ngClass]="{'active': activeBrand === brand}">{{ brand }}</a>
+                </li>
+            </ul>
+          </div> -->
+
+        <div class="filter-section">
+            <h3 class="filter-heading">Watch Color</h3>
+            <ul class="filter-options">
+                <li><a (click)="setColorFilter('Black')" [ngClass]="{'active': activeColor === 'Black'}">Black</a></li>
+                <li><a (click)="setColorFilter('Silver')" [ngClass]="{'active': activeColor === 'Silver'}">Silver</a></li>
+                <li><a (click)="setColorFilter('Rose Gold')" [ngClass]="{'active': activeColor === 'Rose Gold'}">Rose Gold</a></li>
+                <li><a (click)="setColorFilter('Blue')" [ngClass]="{'active': activeColor === 'Blue'}">Blue</a></li>
+            </ul>
+        </div>
+        
+        <div class="filter-section">
+            <h3 class="filter-heading">Price Range</h3>
+            <input type="range" (input)="setPriceFilter($event)" [value]="maxPrice" min="1000" max="10000" step="500">
+            <div class="flex justify-between text-sm text-gray-500 mt-2">
+                <span>₹1,000</span>
+                <span>₹{{ maxPrice | number }}</span>
+            </div>
+        </div>
+          
+        </aside>
+        
+        <div class="product-container">
+          <div *ngIf="filteredWatches.length === 0" class="no-products-found">
+            <h3>😞 No watches match your criteria.</h3>
+            <p>Try clearing some filters to see more products.</p>
+          </div>
+
+          <main class="product-grid">
+            <a *ngFor="let watch of filteredWatches" [routerLink]="['/watch', watch.id]" class="product-card">
+              <img [src]="watch.imageUrl" [alt]="watch.name" class="product-image">
+              <div *ngIf="watch.isBestSeller" class="badge">BEST SELLER</div>
+              <div class="product-details">
+                <span class="brand">{{ watch.brand }} | {{ watch.gender }}'s Watch</span>
+                <h3 class="name">{{ watch.name }}</h3>
+                <div class="price">₹{{ watch.price | number }}</div>
+                <div class="rating">
+                  <span>{{ watch.rating }} ★</span>
+                  <span>({{ watch.reviews }})</span>
+                </div>
+              </div>
+            </a>
+          </main>
+        </div>
+    </div>
+  </div>

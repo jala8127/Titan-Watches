@@ -1,0 +1,59 @@
+<!-- Main scrollable container for the entire page -->
+<div class="product-scroll-container">
+  <!-- Conditional rendering for the watch details -->
+  <div *ngIf="watch; else notFound" class="detail-container">
+    <div class="detail-header">
+      <span class="brand-info">{{ watch.brand }} | {{ watch.gender }}'s Watch</span>
+      <h1 class="product-name">{{ watch.name }}</h1>
+      <div class="rating">
+        <span>{{ watch.rating }} ★</span>
+        <span>({{ watch.reviews }} Reviews)</span>
+      </div>
+    </div>
+    
+    <div class="detail-layout">
+      <!-- Image gallery section -->
+      <div class="image-gallery">
+        <img [src]="selectedImage" [alt]="watch.name" class="main-image">
+        <div class="thumbnail-list">
+          <img *ngFor="let img of watch.productImages" 
+               [src]="img" 
+               [alt]="watch.name + ' thumbnail'" 
+               class="thumbnail"
+               [ngClass]="{'active': img === selectedImage}"
+               (click)="selectImage(img)">
+        </div>
+      </div>
+      
+      <!-- Product information section -->
+      <div class="product-info">
+        <div class="price">
+          <span>MRP ₹{{ watch.price | number }}</span>
+        </div>
+        
+        <p class="description">{{ watch.description }}</p>
+
+        <div class="actions">
+          <button class="add-to-cart-btn">ADD TO CART</button>
+          <button class="buy-now-btn">BUY NOW</button>
+        </div>
+        
+        <div class="features-section">
+          <h3 class="features-heading">Product Details</h3>
+          <ul>
+            <li><strong>Model Number:</strong> {{ watch.modelNumber }}</li>
+            <li *ngFor="let feature of watch.features">{{ feature }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template to show when the watch is not found -->
+  <ng-template #notFound>
+    <div class="not-found-container">
+      <h2>Watch Not Found</h2>
+      <p>Sorry, we couldn't find the product you're looking for.</p>
+    </div>
+  </ng-template>
+</div>

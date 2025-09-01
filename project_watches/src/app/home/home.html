@@ -1,0 +1,53 @@
+<div class="home-container">
+    <div class="carousel-container" (mouseenter)="stopAutoScroll()" (mouseleave)="startAutoScroll()">
+        <div 
+            class="carousel-track" 
+            [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
+            [style.transition]="transitionEnabled ? 'transform 0.5s ease-in-out' : 'none'"
+            (transitionend)="handleTransitionEnd()">
+            <div class="carousel-slide" *ngFor="let image of displayImages">
+                <img [src]="image.src" [alt]="image.alt">
+            </div>
+        </div>
+        <div class="carousel-dots">
+            <span *ngFor="let image of carouselImages; let i = index" 
+                  class="dot" 
+                  [class.active]="i === currentIndex - 1"
+                  (click)="goToSlide(i)">
+            </span>
+        </div>
+    </div>
+
+    <div class="scroll-sequence-container">
+    <div class="sticky-container">
+        <canvas id="watch-canvas"></canvas>
+    </div>
+    <div class="text-sections">
+        <div class="text-section" id="section-1">
+            <div class="text-content">
+                <h2>Titan Edge</h2>
+                <p>A masterpiece of engineering, redefined. Scroll to explore its revolutionary design.</p>
+            </div>
+        </div>
+        <div class="text-section" id="section-2">
+            <div class="text-content">
+                <h2>Precision Dial</h2>
+                <p>Every detail is crafted with meticulous care, featuring sapphire crystal for ultimate clarity.</p>
+            </div>
+        </div>
+        <div class="text-section" id="section-3">
+            <div class="text-content">
+                <h2>Woven Strap</h2>
+                <p>A seamless band of interwoven titanium links, offering unparalleled comfort and style.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="final-section">
+        <div>
+            <h2>Discover More</h2>
+            <p>The experience continues.</p>
+        </div>
+    </div>
+</div>
