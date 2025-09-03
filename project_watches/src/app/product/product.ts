@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { WATCHES, Watch } from '../data/watches.data';
+import { ActivatedRoute } from '@angular/router';
+import { WatchService, Watch } from '../services/watch.service'; 
 
 @Component({
   selector: 'app-product',
@@ -14,19 +14,23 @@ export class Product implements OnInit {
   watch: Watch | undefined;
   selectedImage: string | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private watchService: WatchService 
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
+      const id = params.get('mongoId'); 
+      
       if (id) {
-        this.watch = WATCHES.find(w => w.id === +id);
-        
-        if (this.watch && this.watch.productImages.length > 0) {
-          this.selectedImage = this.watch.productImages[0];
-        } else {
-          // Handle case where watch is found but has no images, if necessary
-        }
+        this.watchService.getWatchById(id).subscribe(watchData => {
+          this.watch = watchData;
+          
+          if (this.watch && this.watch.productImages.length > 0) {
+            this.selectedImage = this.watch.productImages[0];
+          }
+        });
       }
     });
   }

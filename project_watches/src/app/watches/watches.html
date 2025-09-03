@@ -8,15 +8,6 @@
           <h2 class="filter-title">Filter By</h2>
           <button class="clear-all-btn" (click)="clearAllFilters()">CLEAR ALL</button>
 
-          <!-- <div class="filter-section">
-            <h3 class="filter-heading">Brand</h3>
-            <ul class="filter-options">
-                <li *ngFor="let brand of brands">
-                  <a (click)="setBrandFilter(brand)" [ngClass]="{'active': activeBrand === brand}">{{ brand }}</a>
-                </li>
-            </ul>
-          </div> -->
-
         <div class="filter-section">
             <h3 class="filter-heading">Watch Color</h3>
             <ul class="filter-options">
@@ -45,7 +36,7 @@
           </div>
 
           <main class="product-grid">
-            <a *ngFor="let watch of filteredWatches" [routerLink]="['/watch', watch.id]" class="product-card">
+            <a *ngFor="let watch of filteredWatches" [routerLink]="['/product', watch.mongoId]" class="product-card">
               <img [src]="watch.imageUrl" [alt]="watch.name" class="product-image">
               <div *ngIf="watch.isBestSeller" class="badge">BEST SELLER</div>
               <div class="product-details">
