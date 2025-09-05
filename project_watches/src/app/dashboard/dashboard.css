@@ -150,3 +150,61 @@
         display: none;
     }
 }
+/* Wrapper for positioning the dropdown relative to the icon */
+.action-item-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Make the account link look like a button */
+.action-item {
+    cursor: pointer;
+}
+
+/* Style for the dropdown menu */
+.account-dropdown {
+    position: absolute;
+    top: 100%; /* Position it right below the icon */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 200px; /* Set a fixed width */
+    z-index: 1000; /* Ensure it appears above other content */
+    padding: 10px;
+}
+
+.account-dropdown .dropdown-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.account-dropdown .dropdown-button:hover {
+    background-color: #555;
+}
+
+.account-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-dropdown ul li a {
+    display: block;
+    padding: 8px 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.account-dropdown ul li a:hover {
+    background-color: #f5f5f5;
+}

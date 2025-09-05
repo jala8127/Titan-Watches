@@ -1,0 +1,45 @@
+<div class="cart-page">
+  <div *ngIf="isCartEmpty" class="empty-cart">
+    <img src="/assets/empty-cart.png" alt="Empty Cart Illustration">
+    <h2>Your Cart is Empty!</h2>
+    <p>Looks like you haven't added anything to your cart yet.</p>
+    <a routerLink="/watches" class="shop-now-btn">Continue Shopping</a>
+  </div>
+
+  <div *ngIf="!isCartEmpty" class="cart-container">
+    <h1>My Cart ({{ cartItems.length }})</h1>
+    <div class="cart-layout">
+      <div class="cart-items">
+        <div *ngFor="let item of cartItems" class="cart-item">
+          <img [src]="item.imageUrl" alt="{{ item.name }}" class="item-image">
+          <div class="item-details">
+            <p class="item-name">{{ item.name }}</p>
+            <p class="item-price">₹ {{ item.price.toLocaleString('en-IN') }}</p>
+          </div>
+          <div class="item-actions">
+            <input type="number" [(ngModel)]="item.quantity" min="1" class="item-quantity">
+            <button class="remove-btn">Remove</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <span>₹ {{ subtotal.toLocaleString('en-IN') }}</span>
+        </div>
+        <div class="summary-line">
+          <span>Shipping</span>
+          <span>FREE</span>
+        </div>
+        <hr>
+        <div class="summary-line total">
+          <span>Total</span>
+          <span>₹ {{ total.toLocaleString('en-IN') }}</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>

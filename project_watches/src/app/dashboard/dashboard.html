@@ -1,52 +1,78 @@
 <div class="wrapper">
-<header class="navbar">
-    <div class="container">
-        <div class="logo-container">
-            <a routerLink="/home" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
-                <img class="logo-icon" src="/logo.jpeg" alt="Titan Logo">
-                <span class="logo-text">TITAN</span>
-            </a>
-        </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search" class="search-bar">
-            <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 19l-6-6M13 11a5 5 0 11-5-5 5 5 0 015 5z"/>
-            </svg>
-        </div>
-        <div class="user-actions">
-            <a href="#" class="action-item">
-                <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <span class="action-label">Account</span>
-            </a>
-            <a href="#" class="action-item">
-                <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                <span class="action-label">Wishlist</span>
-            </a>
-            <a href="#" class="action-item">
-                <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                <span class="action-label">Cart</span>
-            </a>
-            <a href="#" class="action-item">
-                <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2" ry="2"></rect><line x1="1" y1="9" x2="23" y2="9"></line><line x1="7" y1="15" x2="7.01" y2="15"></line><line x1="11" y1="15" x2="11.01" y2="15"></line></svg>
-                <span class="action-label">Track Order</span>
-            </a>
-        </div>
-    </div>
-</header>
-    
-    <nav class="sub-navbar">
-        <div class="sub-container">
-            <ul>
-                <li><a routerLink="/home" routerLinkActive="active">HOME PAGE</a></li>
-                <li><a routerLink="/watches" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">ALL WATCHES</a></li>
-                <li><a routerLink="/watches" [queryParams]="{ gender: 'Men' }" routerLinkActive="active">MEN'S COLLECTION</a></li>
-                <li><a routerLink="/watches" [queryParams]="{ gender: 'Women' }" routerLinkActive="active">WOMEN'S COLLECTION</a></li>
-                <li><a href="#">PREMIUM WATCHES</a></li>
-                <li><a href="#">GIFTING</a></li>
-                <li><a href="#">WATCH SERVICE</a></li>
-            </ul>
-        </div>
-    </nav>
+  <header class="navbar">
+      <div class="container">
+          <!-- Logo -->
+          <div class="logo-container">
+              <a routerLink="/home" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+                  <img class="logo-icon" src="./logo.jpeg" alt="Titan Logo">
+                  <span class="logo-text">TITAN</span>
+              </a>
+          </div>
 
+          <!-- Search Bar -->
+          <div class="search-container">
+              <input type="text" placeholder="Search" class="search-bar">
+              <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 19l-6-6M13 11a5 5 0 11-5-5 5 5 0 015 5z"/>
+              </svg>
+          </div>
+
+          <!-- User Actions -->
+          <div class="user-actions">
+              <!-- Account Dropdown -->
+              <div class="action-item-wrapper">
+                  <a (click)="toggleAccountDropdown($event)" class="action-item">
+                      <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                      <span class="action-label">Account</span>
+                  </a>
+                  <div *ngIf="isAccountDropdownOpen" class="account-dropdown">
+                      <button (click)="navigateToLogin()" class="dropdown-button">Login / Sign Up</button>
+                      <ul>
+                          <li><a routerLink="/profile" (click)="isAccountDropdownOpen = false">My Profile</a></li>
+                          <li><a routerLink="/orders" (click)="isAccountDropdownOpen = false">My Orders</a></li>
+                          <li><a (click)="navigateToLogin()">Logout</a></li>
+                      </ul>
+                  </div>
+              </div>
+
+              <!-- Wishlist Link -->
+              <a routerLink="/wishlist" class="action-item">
+                  <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                  <span class="action-label">Wishlist</span>
+              </a>
+
+              <!-- Cart Link -->
+              <a routerLink="/cart" class="action-item">
+                  <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                  <span class="action-label">Cart</span>
+              </a>
+
+              <!-- Track Order Link -->
+              <a routerLink="/track-order" class="action-item">
+                  <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2" ry="2"></rect><line x1="1" y1="9" x2="23" y2="9"></line><line x1="7" y1="15" x2="7.01" y2="15"></line><line x1="11" y1="15" x2="11.01" y2="15"></line></svg>
+                  <span class="action-label">Track Order</span>
+              </a>
+          </div>
+      </div>
+  </header>
+  
+  <!-- Sub-Navigation -->
+  <nav class="sub-navbar">
+      <div class="sub-container">
+          <ul>
+              <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">HOME PAGE</a></li>
+              <li><a routerLink="/watches" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">ALL WATCHES</a></li>
+              <li><a routerLink="/watches" [queryParams]="{ gender: 'Men' }" routerLinkActive="active">MEN'S COLLECTION</a></li>
+              <li><a routerLink="/watches" [queryParams]="{ gender: 'Women' }" routerLinkActive="active">WOMEN'S COLLECTION</a></li>
+              <li><a routerLink="/premium-watches">PREMIUM WATCHES</a></li>
+              <li><a routerLink="/gifting">GIFTING</a></li>
+              <li><a routerLink="/service">WATCH SERVICE</a></li>
+          </ul>
+      </div>
+  </nav>
+
+  <main>
     <router-outlet></router-outlet>
+  </main>
 </div>
+

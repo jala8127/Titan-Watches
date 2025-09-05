@@ -1,0 +1,22 @@
+<div class="wishlist-page">
+  <div *ngIf="isWishlistEmpty" class="empty-wishlist">
+    <h2>Your Wishlist is Empty</h2>
+    <p>Save your favorite items here to shop them later.</p>
+    <a routerLink="/watches" class="discover-btn">Discover Watches</a>
+  </div>
+
+  <div *ngIf="!isWishlistEmpty" class="wishlist-container">
+    <h1>My Wishlist</h1>
+    <div class="wishlist-grid">
+      <div *ngFor="let item of wishlistItems" class="wishlist-item-card">
+        <button class="remove-item-btn">&times;</button>
+        <img [src]="item.imageUrl" alt="{{ item.name }}" class="item-image">
+        <div class="item-info">
+          <p class="item-name">{{ item.name }}</p>
+          <p class="item-price">₹ {{ item.price.toLocaleString('en-IN') }}</p>
+          <button class="add-to-cart-btn">Move to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
