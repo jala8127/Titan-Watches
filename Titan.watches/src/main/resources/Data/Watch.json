@@ -7,17 +7,17 @@
     "price": 4245,
     "rating": 4.4,
     "reviews": 471,
-    "imageUrl": "/watch/watchA/watchA.webp",
+    "imageUrl": "assets/watch/watchA/watchA.webp",
     "isBestSeller": true,
     "modelNumber": "NT1836NM01",
     "description": "A minimalist black dial watch with a durable metal strap, perfect for everyday wear.",
     "features": ["Quartz movement", "Water resistant up to 50M", "Date display", "Metal strap"],
     "productImages": [
-      "/watch/watchA/watchA.webp",
-      "/watch/watchA/watchA2.webp",
-      "/watch/watchA/watchA1.webp",
-      "/watch/watchA/watchA3.webp",
-      "/watch/watchA/watchA4.webp"
+      "assets/watch/watchA/watchA.webp",
+      "assets/watch/watchA/watchA2.webp",
+      "assets/watch/watchA/watchA1.webp",
+      "assets/watch/watchA/watchA3.webp",
+      "assets/watch/watchA/watchA4.webp"
     ]
   },
   {
@@ -28,17 +28,17 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchB/watchB.jpg",
+    "imageUrl": "assets/watch/watchB/watchB.jpg",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchB/watchB.jpg",
-      "/watch/watchB/watchB1.webp",
-      "/watch/watchB/watchB2.webp",
-      "/watch/watchB/watchB3.webp",
-      "/watch/watchB/watchB4.webp"
+      "assets/watch/watchB/watchB.jpg",
+      "assets/watch/watchB/watchB1.webp",
+      "assets/watch/watchB/watchB2.webp",
+      "assets/watch/watchB/watchB3.webp",
+      "assets/watch/watchB/watchB4.webp"
     ]
   },
   {
@@ -49,17 +49,17 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchH/watchH.webp",
+    "imageUrl": "assets/watch/watchH/watchH.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchH/watchH.webp",
-      "/watch/watchH/watchH1.webp",
-      "/watch/watchH/watchH2.webp",
-      "/watch/watchH/watchH3.webp",
-      "/watch/watchH/watchH4.webp"
+      "assets/watch/watchH/watchH.webp",
+      "assets/watch/watchH/watchH1.webp",
+      "assets/watch/watchH/watchH2.webp",
+      "assets/watch/watchH/watchH3.webp",
+      "assets/watch/watchH/watchH4.webp"
     ]
   },
   {
@@ -70,17 +70,17 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchI/watchI.webp",
+    "imageUrl": "assets/watch/watchI/watchI.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchI/watchI.webp",
-      "/watch/watchI/watchI1.webp",
-      "/watch/watchI/watchI2.webp",
-      "/watch/watchI/watchI3.webp",
-      "/watch/watchI/watchI4.jpg"
+      "assets/watch/watchI/watchI.webp",
+      "assets/watch/watchI/watchI1.webp",
+      "assets/watch/watchI/watchI2.webp",
+      "assets/watch/watchI/watchI3.webp",
+      "assets/watch/watchI/watchI4.jpg"
     ]
   },
   {
@@ -91,17 +91,17 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchK/watchK.webp",
+    "imageUrl": "assets/watch/watchK/watchK.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchK/watchK.webp",
-      "/watch/watchK/watchK1.webp",
-      "/watch/watchK/watchK2.webp",
-      "/watch/watchK/watchK3.webp",
-      "/watch/watchK/watchK4.webp"
+      "assets/watch/watchK/watchK.webp",
+      "assets/watch/watchK/watchK1.webp",
+      "assets/watch/watchK/watchK2.webp",
+      "assets/watch/watchK/watchK3.webp",
+      "assets/watch/watchK/watchK4.webp"
     ]
   },
   {
@@ -112,17 +112,17 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchL/watchL.jpg",
+    "imageUrl": "assets/watch/watchL/watchL.jpg",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchL/watchL.jpg",
-      "/watch/watchL/watchL1.webp",
-      "/watch/watchL/watchL2.webp",
-      "/watch/watchL/watchL3.webp",
-      "/watch/watchL/watchL4.webp"
+      "assets/watch/watchL/watchL.jpg",
+      "assets/watch/watchL/watchL1.webp",
+      "assets/watch/watchL/watchL2.webp",
+      "assets/watch/watchL/watchL3.webp",
+      "assets/watch/watchL/watchL4.webp"
     ]
   },
   {
@@ -133,16 +133,16 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchR/watchR.webp",
+    "imageUrl": "assets/watch/watchR/watchR.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchR/watchR.webp",
-      "/watch/watchR/watchR1.webp",
-      "/watch/watchR/watchR2.webp",
-      "/watch/watchR/watchR3.webp"
+      "assets/watch/watchR/watchR.webp",
+      "assets/watch/watchR/watchR1.webp",
+      "assets/watch/watchR/watchR2.webp",
+      "assets/watch/watchR/watchR3.webp"
     ]
   },
   {
@@ -153,16 +153,16 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchS/watchS.webp",
+    "imageUrl": "assets/watch/watchS/watchS.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchS/watchS.webp",
-      "/watch/watchS/watchS1.webp",
-      "/watch/watchS/watchS2.webp",
-      "/watch/watchS/watchS3.webp"
+      "assets/watch/watchS/watchS.webp",
+      "assets/watch/watchS/watchS1.webp",
+      "assets/watch/watchS/watchS2.webp",
+      "assets/watch/watchS/watchS3.webp"
     ]
   },
   {
@@ -173,17 +173,17 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchT/watchT.webp",
+    "imageUrl": "assets/watch/watchT/watchT.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchT/watchT.webp",
-      "/watch/watchT/watchT1.webp",
-      "/watch/watchT/watchT2.webp",
-      "/watch/watchT/watchT3.webp",
-      "/watch/watchT/watchT4.webp"
+      "assets/watch/watchT/watchT.webp",
+      "assets/watch/watchT/watchT1.webp",
+      "assets/watch/watchT/watchT2.webp",
+      "assets/watch/watchT/watchT3.webp",
+      "assets/watch/watchT/watchT4.webp"
     ]
   },
   {
@@ -194,17 +194,17 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchU/watchU.webp",
+    "imageUrl": "assets/watch/watchU/watchU.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchU/watchU.webp",
-      "/watch/watchU/watchU1.webp",
-      "/watch/watchU/watchU2.webp",
-      "/watch/watchU/watchU3.webp",
-      "/watch/watchU/watchU4.webp"
+      "assets/watch/watchU/watchU.webp",
+      "assets/watch/watchU/watchU1.webp",
+      "assets/watch/watchU/watchU2.webp",
+      "assets/watch/watchU/watchU3.webp",
+      "assets/watch/watchU/watchU4.webp"
     ]
   },
   {
@@ -215,18 +215,18 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchV/watchV.jpg",
+    "imageUrl": "assets/watch/watchV/watchV.jpg",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchV/watchV.jpg",
-      "/watch/watchV/watchV1.webp",
-      "/watch/watchV/watchV2.webp",
-      "/watch/watchV/watchV3.webp",
-      "/watch/watchV/watchV4.webp",
-      "/watch/watchV/watchV5.webp"
+      "assets/watch/watchV/watchV.jpg",
+      "assets/watch/watchV/watchV1.webp",
+      "assets/watch/watchV/watchV2.webp",
+      "assets/watch/watchV/watchV3.webp",
+      "assets/watch/watchV/watchV4.webp",
+      "assets/watch/watchV/watchV5.webp"
     ]
   },
   {
@@ -237,16 +237,16 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchX/watchX.jpg",
+    "imageUrl": "assets/watch/watchX/watchX.jpg",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchX/watchX.jpg",
-      "/watch/watchX/watchX1.webp",
-      "/watch/watchX/watchX2.webp",
-      "/watch/watchX/watchX3.webp"
+      "assets/watch/watchX/watchX.jpg",
+      "assets/watch/watchX/watchX1.webp",
+      "assets/watch/watchX/watchX2.webp",
+      "assets/watch/watchX/watchX3.webp"
     ]
   },
   {
@@ -257,16 +257,16 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchY/watchY.webp",
+    "imageUrl": "assets/watch/watchY/watchY.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchY/watchY.webp",
-      "/watch/watchY/watchY1.webp",
-      "/watch/watchY/watchY2.webp",
-      "/watch/watchY/watchY3.webp"
+      "assets/watch/watchY/watchY.webp",
+      "assets/watch/watchY/watchY1.webp",
+      "assets/watch/watchY/watchY2.webp",
+      "assets/watch/watchY/watchY3.webp"
     ]
   },
   {
@@ -277,16 +277,16 @@
     "price": 5995,
     "rating": 4.5,
     "reviews": 160,
-    "imageUrl": "/watch/watchZ/watchZ.webp",
+    "imageUrl": "assets/watch/watchZ/watchZ.webp",
     "isBestSeller": false,
     "modelNumber": "NT1832NM01",
     "description": "This elegant timepiece features a day and date display, combining style with functionality.",
     "features": ["Quartz movement", "Day & Date function", "Black metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchZ/watchZ.webp",
-      "/watch/watchZ/watchZ1.webp",
-      "/watch/watchZ/watchZ2.webp",
-      "/watch/watchZ/watchZ3.webp"
+      "assets/watch/watchZ/watchZ.webp",
+      "assets/watch/watchZ/watchZ1.webp",
+      "assets/watch/watchZ/watchZ2.webp",
+      "assets/watch/watchZ/watchZ3.webp"
     ]
   },
   {
@@ -297,17 +297,17 @@
     "price": 8500,
     "rating": 4.7,
     "reviews": 250,
-    "imageUrl": "/watch/watchC/watchC.jpg",
+    "imageUrl": "assets/watch/watchC/watchC.jpg",
     "isBestSeller": false,
     "modelNumber": "NT2222NM01",
     "description": "A robust and sporty chronograph watch with multiple dials, perfect for an active lifestyle.",
     "features": ["Chronograph function", "Stainless steel case", "Water resistant up to 100M", "Luminous hands"],
     "productImages": [
-      "/watch/watchC/watchC.jpg",
-      "/watch/watchC/watchC1.jpg",
-      "/watch/watchC/watchC2.jpg",
-      "/watch/watchC/watchC3.jpg",
-      "/watch/watchC/watchC4.jpg"
+      "assets/watch/watchC/watchC.jpg",
+      "assets/watch/watchC/watchC1.jpg",
+      "assets/watch/watchC/watchC2.jpg",
+      "assets/watch/watchC/watchC3.jpg",
+      "assets/watch/watchC/watchC4.jpg"
     ]
   },
   {
@@ -318,16 +318,16 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchD/watchD.jpg",
+    "imageUrl": "assets/watch/watchD/watchD.jpg",
     "isBestSeller": true,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchD/watchD.jpg",
-      "/watch/watchD/watchD1.jpg",
-      "/watch/watchD/watchD2.webp",
-      "/watch/watchD/watchD3.jpg"
+      "assets/watch/watchD/watchD.jpg",
+      "assets/watch/watchD/watchD1.jpg",
+      "assets/watch/watchD/watchD2.webp",
+      "assets/watch/watchD/watchD3.jpg"
     ]
   },
   {
@@ -338,16 +338,16 @@
     "price": 5995,
     "rating": 4.4,
     "reviews": 113,
-    "imageUrl": "/watch/watchE/watchE.webp",
+    "imageUrl": "assets/watch/watchE/watchE.webp",
     "isBestSeller": false,
     "modelNumber": "NT2224NM02",
     "description": "A stylish workwear watch with a striking blue dial and silver metal strap.",
     "features": ["Quartz movement", "Blue dial", "Stainless steel case", "Classic design"],
     "productImages": [
-      "/watch/watchE/watchE.webp",
-      "/watch/watchE/watchE1.webp",
-      "/watch/watchE/watchE2.webp",
-      "/watch/watchE/watchE3.webp"
+      "assets/watch/watchE/watchE.webp",
+      "assets/watch/watchE/watchE1.webp",
+      "assets/watch/watchE/watchE2.webp",
+      "assets/watch/watchE/watchE3.webp"
     ]
   },
   {
@@ -358,17 +358,17 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchG/watchG.webp",
+    "imageUrl": "assets/watch/watchG/watchG.webp",
     "isBestSeller": true,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchG/watchG.webp",
-      "/watch/watchG/watchG1.jpg",
-      "/watch/watchG/watchG2.jpg",
-      "/watch/watchG/watchG3.webp",
-      "/watch/watchG/watchG4.jpg"
+      "assets/watch/watchG/watchG.webp",
+      "assets/watch/watchG/watchG1.jpg",
+      "assets/watch/watchG/watchG2.jpg",
+      "assets/watch/watchG/watchG3.webp",
+      "assets/watch/watchG/watchG4.jpg"
     ]
   },
   {
@@ -379,16 +379,16 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchJ/watchJ.webp",
+    "imageUrl": "assets/watch/watchJ/watchJ.webp",
     "isBestSeller": true,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchJ/watchJ.webp",
-      "/watch/watchJ/watchJ1.webp",
-      "/watch/watchJ/watchJ2.webp",
-      "/watch/watchJ/watchJ3.webp"
+      "assets/watch/watchJ/watchJ.webp",
+      "assets/watch/watchJ/watchJ1.webp",
+      "assets/watch/watchJ/watchJ2.webp",
+      "assets/watch/watchJ/watchJ3.webp"
     ]
   },
   {
@@ -399,17 +399,17 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchM/watchM.webp",
+    "imageUrl": "assets/watch/watchM/watchM.webp",
     "isBestSeller": false,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchM/watchM.webp",
-      "/watch/watchM/watchM1.webp",
-      "/watch/watchM/watchM2.webp",
-      "/watch/watchM/watchM3.webp",
-      "/watch/watchM/watchM4.webp"
+      "assets/watch/watchM/watchM.webp",
+      "assets/watch/watchM/watchM1.webp",
+      "assets/watch/watchM/watchM2.webp",
+      "assets/watch/watchM/watchM3.webp",
+      "assets/watch/watchM/watchM4.webp"
     ]
   },
   {
@@ -420,16 +420,16 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchN/watchN.webp",
+    "imageUrl": "assets/watch/watchN/watchN.webp",
     "isBestSeller": true,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchN/watchN.webp",
-      "/watch/watchN/watchN1.webp",
-      "/watch/watchN/watchN2.webp",
-      "/watch/watchN/watchN3.webp"
+      "assets/watch/watchN/watchN.webp",
+      "assets/watch/watchN/watchN1.webp",
+      "assets/watch/watchN/watchN2.webp",
+      "assets/watch/watchN/watchN3.webp"
     ]
   },
   {
@@ -440,16 +440,16 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchO/watchO.webp",
+    "imageUrl": "assets/watch/watchO/watchO.webp",
     "isBestSeller": true,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchO/watchO.webp",
-      "/watch/watchO/watchO1.webp",
-      "/watch/watchO/watchO2.webp",
-      "/watch/watchO/watchO3.webp"
+      "assets/watch/watchO/watchO.webp",
+      "assets/watch/watchO/watchO1.webp",
+      "assets/watch/watchO/watchO2.webp",
+      "assets/watch/watchO/watchO3.webp"
     ]
   },
   {
@@ -460,16 +460,16 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchP/watchP.webp",
+    "imageUrl": "assets/watch/watchP/watchP.webp",
     "isBestSeller": true,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchP/watchP.webp",
-      "/watch/watchP/watchP1.webp",
-      "/watch/watchP/watchP2.webp",
-      "/watch/watchP/watchP3.webp"
+      "assets/watch/watchP/watchP.webp",
+      "assets/watch/watchP/watchP1.webp",
+      "assets/watch/watchP/watchP2.webp",
+      "assets/watch/watchP/watchP3.webp"
     ]
   },
   {
@@ -480,16 +480,16 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchQ/watchQ.webp",
+    "imageUrl": "assets/watch/watchQ/watchQ.webp",
     "isBestSeller": true,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchQ/watchQ.webp",
-      "/watch/watchQ/watchQ1.webp",
-      "/watch/watchQ/watchQ2.webp",
-      "/watch/watchQ/watchQ3.webp"
+      "assets/watch/watchQ/watchQ.webp",
+      "assets/watch/watchQ/watchQ1.webp",
+      "assets/watch/watchQ/watchQ2.webp",
+      "assets/watch/watchQ/watchQ3.webp"
     ]
   },
   {
@@ -500,16 +500,16 @@
     "price": 3315,
     "rating": 5.0,
     "reviews": 10,
-    "imageUrl": "/watch/watchD/watchD.jpg",
+    "imageUrl": "assets/watch/watchW/watchW.webp",
     "isBestSeller": true,
     "modelNumber": "NT2223NM02",
     "description": "An elegant women's watch with a sleek black dial and a delicate metal strap for a sophisticated look.",
     "features": ["Quartz movement", "Scratch-resistant glass", "Metal strap", "Water resistant"],
     "productImages": [
-      "/watch/watchD/watchD.jpg",
-      "/watch/watchD/watchD1.jpg",
-      "/watch/watchD/watchD2.webp",
-      "/watch/watchD/watchD3.jpg"
+      "assets/watch/watchW/watchW.webp",
+      "assets/watch/watchW/watchW1.webp",
+      "assets/watch/watchW/watchW2.webp",
+      "assets/watch/watchW/watchW3.webp"
     ]
   },
   {
@@ -520,16 +520,17 @@
     "price": 7800,
     "rating": 4.6,
     "reviews": 80,
-    "imageUrl": "/watch/watchF/watchF.webp",
+    "imageUrl": "assets/watch/watchF/watchF.webp",
     "isBestSeller": false,
     "modelNumber": "NT2237NM02",
     "description": "A sleek and modern minimalist watch with a fashionable rose gold finish, perfect for a chic look.",
     "features": ["Minimalist design", "Rose gold finish", "Leather strap", "Water resistant"],
     "productImages": [
-      "/watch/watchF/watchF.webp",
-      "/watch/watchF/watchF1.webp",
-      "/watch/watchF/watchF2.webp",
-      "/watch/watchF/watchF3.webp"
+      "assets/watch/watchF/watchF.webp",
+      "assets/watch/watchF/watchF1.webp",
+      "assets/watch/watchF/watchF2.webp",
+      "assets/watch/watchF/watchF3.webp"
     ]
   }
 ]
+

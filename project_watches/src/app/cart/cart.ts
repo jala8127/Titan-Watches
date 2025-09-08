@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -9,36 +9,33 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule 
+    FormsModule
   ],
   templateUrl: './cart.html',
   styleUrls: ['./cart.css']
 })
 export class CartComponent {
-  cartItems = [
-    {
-      id: 1,
-      name: 'Titan Quartz Analog Watch',
-      price: 2595,
-      quantity: 1,
-      imageUrl: 'https://via.placeholder.com/100'
-    },
-    {
-      id: 2,
-      name: 'Raga Delight Gold Watch',
-      price: 6595,
-      quantity: 1,
-      imageUrl: 'https://via.placeholder.com/100'
-    }
-  ];
+  // The cart starts empty by default
+  cartItems: any[] = [];
 
+  // This property will be true when the page first loads
   isCartEmpty = this.cartItems.length === 0;
 
+  // Calculates the subtotal of items in the cart
   get subtotal() {
-    return this.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return this.cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   }
 
+  // Calculates the final total
   get total() {
-    return this.subtotal;
+    return this.subtotal; // You can add taxes or shipping fees here later
+  }
+
+  // A function to remove an item from the cart
+  removeItem(itemId: number) {
+    this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+    // Update the isCartEmpty status after removing an item
+    this.isCartEmpty = this.cartItems.length === 0;
   }
 }
+

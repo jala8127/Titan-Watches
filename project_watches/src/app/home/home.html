@@ -1,5 +1,6 @@
 <div class="home-container">
-    <div class="carousel-container" (mouseenter)="stopAutoScroll()" (mouseleave)="startAutoScroll()">
+    <!-- The (mouseenter) and (mouseleave) events have been removed -->
+    <div class="carousel-container">
         <div 
             class="carousel-track" 
             [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
@@ -9,40 +10,54 @@
                 <img [src]="image.src" [alt]="image.alt">
             </div>
         </div>
+        
+        <!-- NEW Arrow Buttons -->
+        <button class="carousel-arrow prev" (click)="goToPrevSlide()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+        </button>
+        <button class="carousel-arrow next" (click)="goToNextSlide()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+        </button>
+        
         <div class="carousel-dots">
             <span *ngFor="let image of carouselImages; let i = index" 
                   class="dot" 
-                  [class.active]="i === currentIndex - 1"
+                  [class.active]="i === (currentIndex - 1 + carouselImages.length) % carouselImages.length"
                   (click)="goToSlide(i)">
             </span>
         </div>
     </div>
 
+    <!-- The rest of your home page content remains the same -->
     <div class="scroll-sequence-container">
-    <div class="sticky-container">
-        <canvas id="watch-canvas"></canvas>
+        <div class="sticky-container">
+            <canvas id="watch-canvas"></canvas>
+        </div>
+        <div class="text-sections">
+            <div class="text-section" id="section-1">
+                <div class="text-content">
+                    <h2>Titan Edge</h2>
+                    <p>A masterpiece of engineering, redefined. Scroll to explore its revolutionary design.</p>
+                </div>
+            </div>
+            <div class="text-section" id="section-2">
+                <div class="text-content">
+                    <h2>Precision Dial</h2>
+                    <p>Every detail is crafted with meticulous care, featuring sapphire crystal for ultimate clarity.</p>
+                </div>
+            </div>
+            <div class="text-section" id="section-3">
+                <div class="text-content">
+                    <h2>Woven Strap</h2>
+                    <p>A seamless band of interwoven titanium links, offering unparalleled comfort and style.</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="text-sections">
-        <div class="text-section" id="section-1">
-            <div class="text-content">
-                <h2>Titan Edge</h2>
-                <p>A masterpiece of engineering, redefined. Scroll to explore its revolutionary design.</p>
-            </div>
-        </div>
-        <div class="text-section" id="section-2">
-            <div class="text-content">
-                <h2>Precision Dial</h2>
-                <p>Every detail is crafted with meticulous care, featuring sapphire crystal for ultimate clarity.</p>
-            </div>
-        </div>
-        <div class="text-section" id="section-3">
-            <div class="text-content">
-                <h2>Woven Strap</h2>
-                <p>A seamless band of interwoven titanium links, offering unparalleled comfort and style.</p>
-            </div>
-        </div>
-    </div>
-</div>
 
     <div class="final-section">
         <div>

@@ -1,10 +1,13 @@
 <div class="wishlist-page">
+  <!-- This "empty state" view will now show by default -->
   <div *ngIf="isWishlistEmpty" class="empty-wishlist">
+    <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
     <h2>Your Wishlist is Empty</h2>
-    <p>Save your favorite items here to shop them later.</p>
+    <p>Add products you love to your wishlist to see them here.</p>
     <a routerLink="/watches" class="discover-btn">Discover Watches</a>
   </div>
 
+  <!-- This view will only appear when items are added to the wishlistItems array -->
   <div *ngIf="!isWishlistEmpty" class="wishlist-container">
     <h1>My Wishlist</h1>
     <div class="wishlist-grid">

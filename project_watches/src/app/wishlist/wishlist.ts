@@ -11,20 +11,6 @@ import { RouterModule } from '@angular/router';
 })
 export class WishlistComponent {
 
-  wishlistItems = [
-    {
-      id: 3,
-      name: 'Titan Men\'s Elegance Watch',
-      price: 1995,
-      imageUrl: 'https://via.placeholder.com/250' 
-    },
-    {
-      id: 4,
-      name: 'Tommy Hilfiger Blue Dial',
-      price: 8395,
-      imageUrl: 'https://via.placeholder.com/250' 
-    }
-  ];
-
+  wishlistItems: any[] = []; 
   isWishlistEmpty = this.wishlistItems.length === 0;
 }

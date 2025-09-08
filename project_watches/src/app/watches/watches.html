@@ -36,7 +36,8 @@
           </div>
 
           <main class="product-grid">
-            <a *ngFor="let watch of filteredWatches" [routerLink]="['/product', watch.mongoId]" class="product-card">
+            <!-- This is the line that has been corrected -->
+            <a *ngFor="let watch of filteredWatches" [routerLink]="['/watch', watch.mongoId]" class="product-card">
               <img [src]="watch.imageUrl" [alt]="watch.name" class="product-image">
               <div *ngIf="watch.isBestSeller" class="badge">BEST SELLER</div>
               <div class="product-details">

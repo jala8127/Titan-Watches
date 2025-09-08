@@ -1,14 +1,13 @@
-/* New container to make the entire component scrollable */
 .product-scroll-container {
-  height: 100vh; /* Full viewport height */
-  overflow-y: auto; /* Enable vertical scrolling when content overflows */
-  background-color: #f8f9fa; /* A light background for the page */
+  height: calc(100vh - 100px); 
+  overflow-y: auto; 
+  background-color: #f8f9fa; 
 }
 
 .detail-container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem; 
 }
 
 .detail-header {
@@ -157,7 +156,6 @@
   background-color: #1562b9;
 }
 
-/* Features Section */
 .features-section {
   border-top: 1px solid #e5e7eb;
   padding-top: 1.5rem;
@@ -181,7 +179,6 @@
   color: #4b5563;
 }
 
-/* Not Found Message Styling */
 .not-found-container {
     display: flex;
     flex-direction: column;
@@ -191,3 +188,4 @@
     text-align: center;
     color: #4b5563;
 }
+

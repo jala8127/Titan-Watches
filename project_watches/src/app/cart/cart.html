@@ -1,11 +1,28 @@
 <div class="cart-page">
+  <!-- EMPTY CART VIEW - Updated to match your screenshot -->
   <div *ngIf="isCartEmpty" class="empty-cart">
-    <img src="/assets/empty-cart.png" alt="Empty Cart Illustration">
+    <div class="empty-cart-icon">
+      <!-- SVG for the shopping bag and bee -->
+      <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 30H85L80 85H20L15 30Z" stroke="#4A90E2" stroke-width="2" fill="#D6EAF8"/>
+        <path d="M35 40V20C35 14.4772 39.4772 10 45 10H55C60.5228 10 65 14.4772 65 20V40" stroke="#4A90E2" stroke-width="2"/>
+        <!-- Bee -->
+        <g transform="translate(65, 15) rotate(15)">
+          <path d="M-5 0C-5 -2.76142 -2.76142 -5 0 -5C2.76142 -5 5 -2.76142 5 0C5 2.76142 2.76142 5 0 5C-2.76142 5 -5 2.76142 -5 0Z" fill="#F8E71C"/>
+          <path d="M-4 0C-4 -2.20914 -2.20914 -4 0 -4C2.20914 -4 4 -2.20914 4 0" stroke="black" stroke-width="1.5"/>
+          <path d="M-6 -3L-8 -6" stroke="black" stroke-width="1"/>
+          <path d="M-3 -4L-4 -8" stroke="black" stroke-width="1"/>
+        </g>
+         <!-- Dotted line -->
+        <path d="M60 25 C 45 15, 35 35, 50 45" stroke="black" stroke-width="1" stroke-dasharray="2 2" fill="none"/>
+      </svg>
+    </div>
     <h2>Your Cart is Empty!</h2>
-    <p>Looks like you haven't added anything to your cart yet.</p>
+    <p>Let's fill it with Titan</p>
     <a routerLink="/watches" class="shop-now-btn">Continue Shopping</a>
   </div>
 
+  <!-- CART WITH ITEMS VIEW - This remains the same -->
   <div *ngIf="!isCartEmpty" class="cart-container">
     <h1>My Cart ({{ cartItems.length }})</h1>
     <div class="cart-layout">
@@ -18,7 +35,7 @@
           </div>
           <div class="item-actions">
             <input type="number" [(ngModel)]="item.quantity" min="1" class="item-quantity">
-            <button class="remove-btn">Remove</button>
+            <button (click)="removeItem(item.id)" class="remove-btn">Remove</button>
           </div>
         </div>
       </div>

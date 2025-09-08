@@ -21,7 +21,9 @@ export class Product implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('mongoId'); 
+      // --- THIS IS THE FIX ---
+      // Changed from params.get('mongoId') to params.get('id')
+      const id = params.get('id'); 
       
       if (id) {
         this.watchService.getWatchById(id).subscribe(watchData => {

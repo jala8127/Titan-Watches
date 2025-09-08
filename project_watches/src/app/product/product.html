@@ -1,6 +1,4 @@
-<!-- Main scrollable container for the entire page -->
 <div class="product-scroll-container">
-  <!-- Conditional rendering for the watch details -->
   <div *ngIf="watch; else notFound" class="detail-container">
     <div class="detail-header">
       <span class="brand-info">{{ watch.brand }} | {{ watch.gender }}'s Watch</span>
