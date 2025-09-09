@@ -1,0 +1,61 @@
+<div *ngIf="isVisible" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-button" (click)="closeModal()">×</button>
+    
+    <div *ngIf="isLoginView">
+      <div *ngIf="!isOtpSent">
+        <h2>Login with OTP</h2>
+        <p class="subtitle">Enter your email or phone number to receive a verification code.</p>
+        <form #requestForm="ngForm" (ngSubmit)="requestOtp(requestForm)">
+          <div class="form-group">
+            <label for="identifier">Email or Phone Number</label>
+            <input type="text" id="identifier" name="identifier" [(ngModel)]="identifier" required>
+          </div>
+          <button type="submit" class="auth-button" [disabled]="!requestForm.valid">Send OTP</button>
+        </form>
+      </div>
+      
+      <div *ngIf="isOtpSent">
+        <h2>Verify Code</h2>
+        <p class="subtitle">An OTP has been sent to {{ identifier }}.</p>
+        <form #verifyForm="ngForm" (ngSubmit)="verifyOtp(verifyForm)">
+          <div class="form-group">
+            <label for="otp">Enter OTP</label>
+            <input type="text" id="otp" name="otp" [(ngModel)]="otp" required>
+          </div>
+          <button type="submit" class="auth-button" [disabled]="!verifyForm.valid">Login</button>
+        </form>
+      </div>
+      <div class="toggle-link">
+        <p>New to Titan? <a (click)="toggleView()">Create an account</a></p>
+      </div>
+    </div>
+    
+    <!-- Registration View -->
+    <div *ngIf="!isLoginView">
+      <h2>Create Your Account</h2>
+      <form #signupForm="ngForm" (ngSubmit)="onSignupSubmit(signupForm)">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" [(ngModel)]="user.email" required email>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" required>
+        </div>
+        <button type="submit" class="auth-button" [disabled]="!signupForm.valid">Create Account</button>
+      </form>
+      <div class="toggle-link">
+        <p>Already have an account? <a (click)="toggleView()">Log in</a></p>
+      </div>
+    </div>
+
+    <div *ngIf="message" class="message" [ngClass]="{'success': !isError, 'error': isError}">
+      {{ message }}
+    </div>
+  </div>
+</div>

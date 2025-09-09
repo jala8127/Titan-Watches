@@ -26,11 +26,11 @@
                       <span class="action-label">Account</span>
                   </a>
                   <div *ngIf="isAccountDropdownOpen" class="account-dropdown">
-                      <button (click)="navigateToLogin()" class="dropdown-button">Login / Sign Up</button>
+                      <button (click)="openAuthModal()" class="dropdown-button">Login / Sign Up</button>
                       <ul>
                           <li><a routerLink="/profile" (click)="isAccountDropdownOpen = false">My Profile</a></li>
                           <li><a routerLink="/orders" (click)="isAccountDropdownOpen = false">My Orders</a></li>
-                          <li><a (click)="navigateToLogin()">Logout</a></li>
+                          <li><a (click)="logout()">Logout</a></li>
                       </ul>
                   </div>
               </div>
@@ -75,4 +75,6 @@
     <router-outlet></router-outlet>
   </main>
 </div>
+
+<app-auth></app-auth>
 

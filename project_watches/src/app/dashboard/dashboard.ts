@@ -1,13 +1,16 @@
 import { Component, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service'; 
+import { Auth } from '../auth/auth'; 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    Auth 
   ],
   templateUrl: './dashboard.html', 
   styleUrls: ['./dashboard.css']
@@ -15,7 +18,7 @@ import { Router, RouterModule } from '@angular/router';
 export class DashboardComponent {
   isAccountDropdownOpen = false;
 
-  constructor(private elementRef: ElementRef, private router: Router) {}
+  constructor(private elementRef: ElementRef, private authService: AuthService) {}
 
   toggleAccountDropdown(event: MouseEvent) {
     event.stopPropagation();
@@ -30,9 +33,14 @@ export class DashboardComponent {
     }
   }
 
-  navigateToLogin() {
+  openAuthModal() {
+    this.isAccountDropdownOpen = false; 
+    this.authService.open(); 
+  }
+
+  logout() {
     this.isAccountDropdownOpen = false;
-    this.router.navigate(['/login']);
+    console.log('Logout action triggered');
   }
 }
 

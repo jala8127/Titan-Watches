@@ -10,8 +10,11 @@
     </div>
     
     <div class="detail-layout">
-      <!-- Image gallery section -->
       <div class="image-gallery">
+        <button class="wishlist-btn" (click)="toggleWishlist()" [ngClass]="{'in-wishlist': isInWishlist}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </button>
+        
         <img [src]="selectedImage" [alt]="watch.name" class="main-image">
         <div class="thumbnail-list">
           <img *ngFor="let img of watch.productImages" 
@@ -23,7 +26,6 @@
         </div>
       </div>
       
-      <!-- Product information section -->
       <div class="product-info">
         <div class="price">
           <span>MRP ₹{{ watch.price | number }}</span>
@@ -32,7 +34,7 @@
         <p class="description">{{ watch.description }}</p>
 
         <div class="actions">
-          <button class="add-to-cart-btn">ADD TO CART</button>
+          <button class="add-to-cart-btn" (click)="addToCart()">ADD TO CART</button>
           <button class="buy-now-btn">BUY NOW</button>
         </div>
         
@@ -43,11 +45,14 @@
             <li *ngFor="let feature of watch.features">{{ feature }}</li>
           </ul>
         </div>
+
+        <div *ngIf="feedbackMessage" class="feedback-message">
+          {{ feedbackMessage }}
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Template to show when the watch is not found -->
   <ng-template #notFound>
     <div class="not-found-container">
       <h2>Watch Not Found</h2>

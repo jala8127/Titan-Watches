@@ -11,6 +11,11 @@ export const routes: Routes = [
                 pathMatch: 'full'
             },
             {
+                path: 'login',
+                redirectTo: 'home',
+                pathMatch: 'full'
+            },
+            {
                 path: 'home',
                 loadComponent: () => import('./home/home').then(m => m.HomeComponent)
             },
@@ -29,10 +34,6 @@ export const routes: Routes = [
             {
                 path: 'wishlist',
                 loadComponent: () => import('./wishlist/wishlist').then(m => m.WishlistComponent)
-            },
-            {
-                path: 'login',
-                loadComponent: () => import('./login/login').then(m => m.Login)
             }
         ]
     }
