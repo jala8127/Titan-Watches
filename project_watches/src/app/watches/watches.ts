@@ -25,9 +25,6 @@ export class Watches implements OnInit {
 
   ngOnInit(): void {
     this.watchService.getWatches().subscribe(watches => {
-      // --- DEBUGGING STEP ---
-      // This will show you exactly what the service is returning.
-      // Open your browser's developer console (F12) to see this message.
       console.log('Data received from WatchService:', watches);
 
       this.allWatches = watches; 

@@ -1,10 +1,10 @@
-package com.titan.watches.Service;
+package com.auth.service.Service;
 
+import com.auth.service.Model.User;
+import com.auth.service.Repository.UserRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
-import com.titan.watches.Model.User;
-import com.titan.watches.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

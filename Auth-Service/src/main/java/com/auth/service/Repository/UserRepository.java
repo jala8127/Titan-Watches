@@ -1,6 +1,6 @@
-package com.titan.watches.Repository;
+package com.auth.service.Repository;
 
-import com.titan.watches.Model.User;
+import com.auth.service.Model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

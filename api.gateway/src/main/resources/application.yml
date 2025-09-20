@@ -1,0 +1,36 @@
+# Set the port for the gateway itself
+server:
+  port: 8080
+
+# Give the service a name
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      # This enables the gateway to use Eureka for finding other services
+      discovery:
+        locator:
+          enabled: true
+      # --- Routing Rules ---
+      routes:
+        - id: auth-service-route
+          uri: lb://Auth-Service    # This MUST EXACTLY match the name in Eureka
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1 # Removes /api from the path
+
+        - id: product-service-route
+          uri: lb://Product-Service # This MUST EXACTLY match the name in Eureka
+          predicates:
+            - Path=/api/products/**
+          filters:
+            - StripPrefix=1 # Removes /api from the path
+
+# Tell this client where to find the Eureka server
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+

@@ -23,7 +23,7 @@ export interface Watch {
   providedIn: 'root'
 })
 export class WatchService {
-  private apiUrl = 'http://localhost:8080/api/watches';
+  private apiUrl = 'http://localhost:8080/api/products';
 
   constructor(private http: HttpClient) { }
 
