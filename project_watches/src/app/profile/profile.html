@@ -1,0 +1,26 @@
+<div class="profile-container" *ngIf="currentUser$ | async as user; else noUser">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="avatar">{{ user.name.charAt(0) }}</div>
+      <h2>{{ user.name }}</h2>
+      <p>Welcome to your profile page.</p>
+    </div>
+    <div class="profile-details">
+      <div class="detail-item">
+        <span class="label">Email:</span>
+        <span class="value">{{ user.email }}</span>
+      </div>
+      <div class="detail-item" *ngIf="user.phoneNumber">
+        <span class="label">Phone:</span>
+        <span class="value">{{ user.phoneNumber }}</span>
+      </div>
+    </div>
+    <div class="profile-actions">
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #noUser>
+  <p class="loading-text">No user is logged in.</p>
+</ng-template>

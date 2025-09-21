@@ -1,10 +1,11 @@
-
 package com.auth.service.Config;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,32 +17,43 @@ import java.io.InputStream;
 @Configuration
 public class FirebaseConfig {
 
-    // This tells Spring to find the service account key you just placed in the resources folder.
+    // NEW: Add a logger
+    private static final Logger logger = LoggerFactory.getLogger(FirebaseConfig.class);
+
     @Value("classpath:serviceAccountKey.json")
     private Resource serviceAccountKey;
 
-    /**
-     * This method creates a reusable "FirebaseAuth" object that can be injected
-     * into other parts of your application (like the UserService).
-     */
     @Bean
     public FirebaseAuth firebaseAuth() throws IOException {
-        // Get the input stream for the service account key file.
-        InputStream serviceAccount = serviceAccountKey.getInputStream();
+        try {
+            logger.info("Attempting to load Firebase service account key from: {}", serviceAccountKey.getURL());
 
-        // Build the Firebase options with the credentials.
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .build();
+            if (!serviceAccountKey.exists()) {
+                // This will give a very clear error on startup if the file is not found
+                logger.error("FATAL: Firebase service account key not found in classpath!");
+                throw new IOException("serviceAccountKey.json not found. Please ensure it is in src/main/resources and the project has been rebuilt.");
+            }
 
-        // This is a safety check. It ensures that you don't try to initialize
-        // the Firebase app more than once, which would cause a crash.
-        if (FirebaseApp.getApps().isEmpty()) {
-            FirebaseApp.initializeApp(options);
+            InputStream serviceAccount = serviceAccountKey.getInputStream();
+
+            FirebaseOptions options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .build();
+
+            if (FirebaseApp.getApps().isEmpty()) {
+                FirebaseApp.initializeApp(options);
+                logger.info("Firebase application has been initialized successfully.");
+            } else {
+                logger.warn("Firebase application was already initialized.");
+            }
+
+            return FirebaseAuth.getInstance();
+
+        } catch (IOException e) {
+            // This will catch any other IO errors during file processing
+            logger.error("An error occurred while initializing Firebase.", e);
+            throw e; // Re-throw the exception to prevent the application from starting in a broken state
         }
-
-        // Return the initialized FirebaseAuth instance.
-        return FirebaseAuth.getInstance();
     }
 }
 

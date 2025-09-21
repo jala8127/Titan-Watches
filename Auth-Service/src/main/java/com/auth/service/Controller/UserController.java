@@ -11,56 +11,87 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/auth") // Simplified path. The "/api" is handled by the gateway.
+@RequestMapping("/auth") // The base path for all authentication-related endpoints
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User user) {
+    /**
+     * NEW REGISTRATION STEP 1:
+     * Receives user details, creates a temporary record, and triggers an OTP email.
+     */
+    @PostMapping("/register/request")
+    public ResponseEntity<String> requestRegistrationOtp(@RequestBody User user) {
         try {
-            userService.registerUser(user);
-            return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully!");
-        } catch (FirebaseAuthException e) {
-            // Handle Firebase-specific errors
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Firebase error: " + e.getMessage());
+            userService.requestRegistrationOtp(user);
+            return ResponseEntity.ok("Verification OTP sent to your email.");
         } catch (IllegalStateException e) {
-            // Handle existing user errors
+            // This happens if the email/phone is already in use
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         } catch (Exception e) {
-            // Handle any other unexpected errors
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
+            // Handle other potential errors during the process
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred: " + e.getMessage());
         }
     }
 
+    /**
+     * NEW REGISTRATION STEP 2:
+     * Receives the email and OTP, verifies them, and finalizes the user account.
+     */
+    @PostMapping("/register/verify")
+    public ResponseEntity<?> verifyAndCreateUser(@RequestBody Map<String, String> payload) {
+        try {
+            String email = payload.get("email");
+            String otp = payload.get("otp");
+            if (email == null || otp == null) {
+                return ResponseEntity.badRequest().body("Email and OTP are required.");
+            }
+            User createdUser = userService.verifyRegistrationAndCreateUser(email, otp);
+            // On success, return the newly created user object with a 201 status
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+        } catch (FirebaseAuthException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Firebase error: " + e.getMessage());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    /**
+     * LOGIN STEP 1: Requests an OTP for an existing, verified user.
+     */
     @PostMapping("/login/request")
-    public ResponseEntity<String> requestOtp(@RequestBody Map<String, String> payload) {
+    public ResponseEntity<String> requestLoginOtp(@RequestBody Map<String, String> payload) {
         try {
             String identifier = payload.get("identifier");
             if (identifier == null || identifier.isBlank()) {
-                return ResponseEntity.badRequest().body("Identifier (email or phone) is required.");
+                return ResponseEntity.badRequest().body("Identifier is required.");
             }
-            String otp = userService.requestOtp(identifier);
-            // In a real app, you would NOT return the OTP in the response.
-            return ResponseEntity.ok("OTP sent successfully. For testing, the OTP is: " + otp);
+            userService.requestLoginOtp(identifier);
+            return ResponseEntity.ok("Login OTP has been sent to your email.");
         } catch (RuntimeException e) {
+            // Catches errors like "User not found" or "Account not verified"
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
+    /**
+     * LOGIN STEP 2: Verifies the OTP and returns the user data for login.
+     */
     @PostMapping("/login/verify")
-    public ResponseEntity<String> verifyOtp(@RequestBody Map<String, String> payload) {
+    public ResponseEntity<?> verifyLoginOtp(@RequestBody Map<String, String> payload) {
         try {
             String identifier = payload.get("identifier");
             String otp = payload.get("otp");
             if (identifier == null || otp == null) {
                 return ResponseEntity.badRequest().body("Identifier and OTP are required.");
             }
-            String result = userService.verifyOtp(identifier, otp);
-            return ResponseEntity.ok(result);
+            User user = userService.verifyLoginOtp(identifier, otp);
+            return ResponseEntity.ok(user);
         } catch (RuntimeException e) {
+            // Catches errors like "Invalid OTP" or "OTP has expired"
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 }
+

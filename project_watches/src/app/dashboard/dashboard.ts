@@ -39,8 +39,8 @@ export class DashboardComponent {
   }
 
   logout() {
-    this.isAccountDropdownOpen = false;
-    console.log('Logout action triggered');
-  }
+  this.isAccountDropdownOpen = false;
+  this.authService.logout(); 
+}
 }
 

@@ -6,9 +6,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -19,93 +24,145 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final FirebaseAuth firebaseAuth;
+    private final JavaMailSender mailSender;
+    private final CacheManager cacheManager;
 
-    /**
-     * Registers a new user.
-     * 1. Checks if the user already exists in MongoDB.
-     * 2. Creates the user in Firebase Authentication to trigger the welcome email.
-     * 3. If Firebase creation is successful, saves the user to MongoDB.
-     */
-    public User registerUser(User userInput) throws FirebaseAuthException {
-        // 1. Check for existing user in the local MongoDB database
-        userRepository.findByEmailOrPhoneNumber(userInput.getEmail(), userInput.getPhoneNumber()).ifPresent(u -> {
-            throw new IllegalStateException("User with this email or phone number already exists.");
-        });
+    private record OtpData(String otp, User userDetails) {}
 
-        // 2. Create the user in Firebase Authentication
+    public void requestRegistrationOtp(User userInput) {
+        // Trim whitespace from email
+        if (userInput.getEmail() != null) {
+            userInput.setEmail(userInput.getEmail().trim());
+        }
+
+        // --- NEW LOGIC TO FORMAT THE PHONE NUMBER ---
+        String phoneNumber = userInput.getPhoneNumber();
+        if (phoneNumber != null && !phoneNumber.isBlank()) {
+            // If the number doesn't already start with a '+', prepend the country code.
+            // We are assuming +91 for India here.
+            if (!phoneNumber.startsWith("+")) {
+                userInput.setPhoneNumber("+91" + phoneNumber.replaceAll("\\s+", "")); // Also removes any spaces
+            }
+        } else {
+            // Ensure blank phone numbers are stored as null
+            userInput.setPhoneNumber(null);
+        }
+        // --- END OF NEW LOGIC ---
+
+        // Check if a VERIFIED user already exists.
+        if (userRepository.findByEmail(userInput.getEmail()).isPresent()) {
+            throw new IllegalStateException("An account with this email already exists.");
+        }
+
+        String otp = generateOtp();
+        String email = userInput.getEmail();
+
+        // Store OTP and formatted user details in the cache
+        Cache otpCache = cacheManager.getCache("registrationOtpCache");
+        if (otpCache != null) {
+            otpCache.put(email, new OtpData(otp, userInput));
+        }
+
+        sendOtpEmail(email, otp, "Your Titan Watches Verification Code");
+    }
+
+    // The rest of your UserService file remains exactly the same.
+    // ... verifyRegistrationAndCreateUser, requestLoginOtp, etc. ...
+    // No changes are needed in the other methods.
+    public User verifyRegistrationAndCreateUser(String email, String otp) throws FirebaseAuthException {
+        Cache otpCache = cacheManager.getCache("registrationOtpCache");
+        OtpData storedData = (otpCache != null) ? otpCache.get(email, OtpData.class) : null;
+
+        if (storedData == null) {
+            throw new RuntimeException("No registration process found or it has expired. Please try again.");
+        }
+
+        if (!Objects.equals(storedData.otp(), otp)) {
+            throw new RuntimeException("The code you entered is incorrect.");
+        }
+
+        User userDetails = storedData.userDetails();
+
         UserRecord.CreateRequest request = new UserRecord.CreateRequest()
-                .setEmail(userInput.getEmail())
-                .setEmailVerified(false)
-                .setPhoneNumber(userInput.getPhoneNumber())
-                .setDisplayName(userInput.getName())
-                // Firebase requires a password, so we generate a random, secure one the user won't need
+                .setEmail(userDetails.getEmail())
+                .setEmailVerified(true)
+                .setPhoneNumber(userDetails.getPhoneNumber()) // This will now be in E.164 format
+                .setDisplayName(userDetails.getName())
                 .setPassword(UUID.randomUUID().toString())
                 .setDisabled(false);
 
         try {
-            UserRecord userRecord = firebaseAuth.createUser(request);
-            System.out.println("Successfully created new user in Firebase: " + userRecord.getUid());
+            firebaseAuth.createUser(request);
 
-            // 3. If Firebase creation succeeds, save the user to MongoDB
             User newUser = new User();
-            newUser.setName(userInput.getName());
-            newUser.setEmail(userInput.getEmail());
-            newUser.setPhoneNumber(userInput.getPhoneNumber());
-            // You can optionally store the Firebase UID in your User model
-            // newUser.setFirebaseUid(userRecord.getUid());
+            newUser.setName(userDetails.getName());
+            newUser.setEmail(userDetails.getEmail());
+            newUser.setPhoneNumber(userDetails.getPhoneNumber());
+            newUser.setVerified(true);
+
+            otpCache.evict(email);
 
             return userRepository.save(newUser);
 
         } catch (FirebaseAuthException e) {
-            System.err.println("Error creating Firebase user: " + e.getMessage());
-            // Re-throw the exception to be handled by the controller
+            System.err.println("Firebase user creation failed for: " + email + ". Error: " + e.getMessage());
+            if(otpCache != null) {
+                otpCache.evict(email);
+            }
             throw e;
         }
     }
 
-    /**
-     * Generates and saves an OTP for a user for login.
-     */
-    public String requestOtp(String identifier) {
+    public void requestLoginOtp(String identifier) {
         User user = userRepository.findByEmailOrPhoneNumber(identifier, identifier)
-                .orElseThrow(() -> new RuntimeException("User not found with identifier: " + identifier));
+                .orElseThrow(() -> new RuntimeException("No account found with this email or phone number."));
 
-        // Generate a random 6-digit OTP
-        String otp = new Random().ints(0, 10)
-                .limit(6)
-                .mapToObj(String::valueOf)
-                .collect(Collectors.joining());
+        if (!user.isVerified()) {
+            throw new IllegalStateException("This account has not been verified yet. Please complete the registration process.");
+        }
 
+        String otp = generateOtp();
         user.setOtp(otp);
-        user.setOtpExpiryTime(LocalDateTime.now().plusMinutes(5)); // OTP is valid for 5 minutes
+        user.setOtpExpiryTime(LocalDateTime.now().plusMinutes(5));
         userRepository.save(user);
-
-        // In a real application, you would send this OTP via email or SMS here.
-        System.out.println("Generated OTP for " + identifier + ": " + otp);
-
-        return otp;
+        sendOtpEmail(user.getEmail(), otp, "Your Titan Watches Login Code");
     }
 
-    /**
-     * Verifies the provided OTP for a given user.
-     */
-    public String verifyOtp(String identifier, String otp) {
+    public User verifyLoginOtp(String identifier, String otp) {
         User user = userRepository.findByEmailOrPhoneNumber(identifier, identifier)
-                .orElseThrow(() -> new RuntimeException("User not found with identifier: " + identifier));
+                .orElseThrow(() -> new RuntimeException("User not found."));
 
-        if (user.getOtp() == null || !user.getOtp().equals(otp)) {
-            throw new RuntimeException("Invalid OTP.");
-        }
+        verifyOtpLogic(user, otp);
 
-        if (user.getOtpExpiryTime().isBefore(LocalDateTime.now())) {
-            throw new RuntimeException("OTP has expired.");
-        }
-
-        // OTP is valid, clear it from the database
         user.setOtp(null);
         user.setOtpExpiryTime(null);
         userRepository.save(user);
 
-        return "OTP verified successfully. Login successful!";
+        return user;
+    }
+
+    private String generateOtp() {
+        return new Random().ints(0, 10)
+                .limit(6)
+                .mapToObj(String::valueOf)
+                .collect(Collectors.joining());
+    }
+
+    private void sendOtpEmail(String email, String otp, String subject) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject(subject);
+        message.setText("Your verification code is: " + otp);
+        mailSender.send(message);
+        System.out.println("Sent OTP to " + email);
+    }
+
+    private void verifyOtpLogic(User user, String otp) {
+        if (user.getOtp() == null || !user.getOtp().equals(otp)) {
+            throw new RuntimeException("The code you entered is incorrect.");
+        }
+        if (user.getOtpExpiryTime().isBefore(LocalDateTime.now())) {
+            throw new RuntimeException("Your code has expired. Please request a new one.");
+        }
     }
 }

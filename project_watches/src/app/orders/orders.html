@@ -1,0 +1,56 @@
+<div class="orders-container">
+  <div class="orders-header">
+    <h1>My Orders</h1>
+    <p>View your order history and status.</p>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading your orders...</p>
+  </div>
+
+  <!-- Orders List (will be shown if orders array is not empty) -->
+  <div *ngIf="!isLoading && orders.length > 0" class="orders-list">
+    <div class="order-card" *ngFor="let order of orders">
+      <div class="order-card-header">
+        <div class="order-info">
+          <span class="order-id">ORDER #{{ order.id }}</span>
+          <span class="order-date">Placed on {{ order.orderDate }}</span>
+        </div>
+        <div class="order-total">
+          <span class="total-label">Total:</span>
+          <span class="total-amount">{{ order.total | currency:'INR' }}</span>
+        </div>
+      </div>
+      <div class="order-card-body">
+        <div class="order-status-section">
+          <span class="status" [ngClass]="getStatusClass(order.status)">
+            {{ order.status }}
+          </span>
+          <p *ngIf="order.status === 'Delivered'">Your item has been delivered.</p>
+        </div>
+        <div class="order-items">
+          <div class="order-item" *ngFor="let item of order.items">
+            <img [src]="item.imageUrl" alt="{{ item.name }}" class="item-image">
+            <div class="item-details">
+              <span class="item-name">{{ item.name }}</span>
+              <span class="item-qty">Qty: {{ item.quantity }}</span>
+            </div>
+            <span class="item-price">{{ item.price | currency:'INR' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State (shown when loading is false and orders array is empty) -->
+  <div *ngIf="!isLoading && orders.length === 0" class="no-orders-container">
+    <svg xmlns="http://www.w.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="no-orders-icon"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <h2>You have not ordered yet</h2>
+    <p>Start shopping to create your first order.</p>
+    <a routerLink="/watches" class="shop-now-btn">Start Shopping</a>
+  </div>
+
+</div>
+

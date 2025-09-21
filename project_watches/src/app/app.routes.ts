@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './gaurds/auth.gaurd';
+
 
 export const routes: Routes = [
     {
@@ -34,6 +36,18 @@ export const routes: Routes = [
             {
                 path: 'wishlist',
                 loadComponent: () => import('./wishlist/wishlist').then(m => m.WishlistComponent)
+            },
+            {
+                path: 'profile',
+                loadComponent: () => import('./profile/profile').then(m => m.ProfileComponent),
+                canActivate: [authGuard] 
+            },
+            // --- NEW ORDERS ROUTE ---
+            {
+                path: 'orders',
+                // Assuming your component is located at '../components/orders/orders.component'
+                loadComponent: () => import('./orders/orders').then(m => m.Orders),
+                canActivate: [authGuard] // Protect this route with the same guard
             }
         ]
     }
